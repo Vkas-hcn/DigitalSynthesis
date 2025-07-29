@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dl_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:fitsSystemWindows="false">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/ic_menu"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/img_previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/bg_not_selete"
+                android:padding="9dp"
+                android:src="@drawable/ic_previous_1"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_num"
+                app:layout_constraintEnd_toStartOf="@+id/tv_num"
+                app:layout_constraintTop_toTopOf="@+id/tv_num" />
+
+            <TextView
+                android:id="@+id/tv_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="29dp"
+                android:text="3×3"
+                android:textColor="#FFFFFFFF"
+                android:textSize="28sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_menu" />
+
+            <ImageView
+                android:id="@+id/img_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:background="@drawable/bg_selete"
+                android:padding="9dp"
+                android:src="@drawable/ic_next_2"
+                app:layout_constraintStart_toEndOf="@+id/tv_num"
+                app:layout_constraintTop_toTopOf="@+id/tv_num" />
+
+            <FrameLayout
+                android:id="@+id/fl_game"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginVertical="26dp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_play"
+                app:layout_constraintTop_toBottomOf="@+id/tv_num"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="100dp"
+                android:background="@drawable/ic_play"
+                android:gravity="center_vertical"
+                android:paddingStart="28dp"
+                android:text="Play"
+                android:textColor="#FFFFFFFF"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/fl_game"
+                app:layout_constraintStart_toStartOf="@+id/fl_game" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32sp"
+                android:layout_marginTop="48dp"
+                android:drawableStart="@drawable/ic_logo"
+                android:drawablePadding="16dp"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="#FF222222"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/privacy_policy_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="32dp"
+                android:autoSizeMaxTextSize="42dp"
+                android:background="@drawable/bg_but_set"
+                android:gravity="center"
+                android:paddingVertical="16dp"
+                android:text="Privacy Policy" />
+
+        </LinearLayout>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>
