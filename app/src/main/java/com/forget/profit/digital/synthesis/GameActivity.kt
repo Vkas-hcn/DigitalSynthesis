@@ -26,7 +26,7 @@ class GameActivity : AppCompatActivity(), Game2048.GameListener, GameView.OnSwip
     private lateinit var vibrationManager: VibrationManager
     private var gameSize = 4
     private var hasWon = false
-
+    private var hasStarted = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -79,12 +79,20 @@ class GameActivity : AppCompatActivity(), Game2048.GameListener, GameView.OnSwip
 
     private fun setupClickListeners() {
         onBackPressedDispatcher.addCallback(this) {
-            finish()
+            if (hasStarted) {
+                showExitDialog()
+            } else {
+                finish()
+            }
         }
 
         with(binding) {
             btnBack.setOnClickListener {
-                finish()
+                if (hasStarted) {
+                    showExitDialog()
+                } else {
+                    finish()
+                }
             }
 
             btnUndo.setOnClickListener {
@@ -134,9 +142,22 @@ class GameActivity : AppCompatActivity(), Game2048.GameListener, GameView.OnSwip
             .show()
     }
 
+
+    private fun showExitDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Exit Game")
+            .setMessage("Are you sure you want to exit the game? Current progress will be lost.")
+            .setPositiveButton("Yes") { _, _ ->
+                finish()
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
     private fun restartGame() {
         game.initGame()
         hasWon = false
+        hasStarted = true
         updateScoreDisplay()
         gameView.updateGrid(game.getGrid(), gameSize)
         gameView.requestLayout()
@@ -170,6 +191,7 @@ class GameActivity : AppCompatActivity(), Game2048.GameListener, GameView.OnSwip
 
     override fun onScoreChanged(score: Int) {
         runOnUiThread {
+            hasStarted = true
             updateScoreDisplay()
             updateHighScore()
         }
@@ -177,6 +199,7 @@ class GameActivity : AppCompatActivity(), Game2048.GameListener, GameView.OnSwip
 
     override fun onGridChanged() {
         runOnUiThread {
+            hasStarted = true
             gameView.updateGrid(game.getGrid(), gameSize)
         }
     }

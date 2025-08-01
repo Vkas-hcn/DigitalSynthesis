@@ -96,8 +96,7 @@ class MainActivity : AppCompatActivity() {
                 if (currentSize > MIN_SIZE) {
                     currentSize--
                     updateGameSettings()
-                    // 可以在这里添加按钮点击音效
-                    // soundManager.playButtonClickSound() // 如果你有按钮点击音效的话
+
                 }
             }
 
@@ -105,8 +104,6 @@ class MainActivity : AppCompatActivity() {
                 if (currentSize < MAX_SIZE) {
                     currentSize++
                     updateGameSettings()
-                    // 可以在这里添加按钮点击音效
-                    // soundManager.playButtonClickSound() // 如果你有按钮点击音效的话
                 }
             }
 
@@ -169,7 +166,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openPrivacyPolicy() {
-        val url = "https://google.com"
+        val url = "https://sites.google.com/view/2048-challenge-able/home"
         val intent = Intent(Intent.ACTION_VIEW, url.toUri())
         startActivity(intent)
     }

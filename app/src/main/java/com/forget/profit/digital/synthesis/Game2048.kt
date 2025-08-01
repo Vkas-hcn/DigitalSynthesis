@@ -239,32 +239,6 @@ class Game2048(private val size: Int) {
         return hasChanged
     }
 
-    fun applyMoveResult(newGrid: Array<IntArray>, scoreIncrease: Int, newAchievements: Set<Int>, mergedNumbers: List<Int>) {
-        grid = newGrid
-        score += scoreIncrease
-
-        mergedNumbers.forEach { number ->
-            gameListener?.onNumberMerged(number)
-        }
-
-        newAchievements.forEach { number ->
-            if (!achievedNumbers.contains(number)) {
-                achievedNumbers.add(number)
-                gameListener?.onFirstTimeAchievement(number)
-            }
-        }
-
-        addRandomNumber()
-        saveState()
-        gameListener?.onScoreChanged(score)
-        gameListener?.onGridChanged()
-
-        if (hasWon()) {
-            gameListener?.onGameWon()
-        } else if (isGameOver()) {
-            gameListener?.onGameOver()
-        }
-    }
 
     private fun moveLeftPreview(grid: Array<IntArray>): Triple<Int, Set<Int>, List<Int>> {
         var scoreIncrease = 0
@@ -527,6 +501,9 @@ class Game2048(private val size: Int) {
     private fun hasWon(): Boolean {
         for (i in 0 until size) {
             for (j in 0 until size) {
+                if(grid[i][j] == 256 && size==3){
+                    return true
+                }
                 if (grid[i][j] == 2048) {
                     return true
                 }
